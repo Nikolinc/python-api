@@ -21,17 +21,15 @@ def insert_data(conn, name, age):
                 (name, age)
             )
             conn.commit()
-            print("Данные добавлены")
+            return 'Данные добавлены'
     except Exception as e:
         print("Ошибка при добавлении данных:", e)
 
 def fetch_data(conn):
     try:
         with conn.cursor() as cur:
-            cur.execute("SELECT * FROM users")
+            cur.execute("SELECT id, name, age FROM users")
             rows = cur.fetchall()
-            print("Данные из таблицы:")
-            for row in rows:
-                print(row)
+            return rows
     except Exception as e:
         print("Ошибка при выборке данных:", e)
