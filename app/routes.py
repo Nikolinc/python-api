@@ -9,9 +9,13 @@ def get_users():
     try:
         conn = get_db_connection()
         users = fetch_data(conn)
-        formatted_users = [
-            {"id": user[0], "name": user[1], "age": user[2]} for user in users
-        ]
+        formatted_users = [{
+            "id": user[0],
+            "name": user[1],
+            "gender": user[2],
+            "person_id": user[3],
+            "data_of_birth": user[4]
+            } for user in users]
         return jsonify(formatted_users), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
